@@ -27,6 +27,7 @@
         <EditText
             android:id="@+id/firstTextBox"
             android:layout_width="wrap_content"
+            android:saveEnabled="false"
             android:layout_height="wrap_content"/>
 
 
@@ -45,6 +46,7 @@
         <EditText
             android:id="@+id/secondTextBox"
             android:layout_width="wrap_content"
+            android:saveEnabled="false"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>

@@ -1,6 +1,7 @@
 package ro.pub.cs.systems.eim.practicaltest01var04;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class PracticalTest01Var04MainActivity extends AppCompatActivity {
 
+    final public static String TAG                  = "pracTest04";
     private Button displayButton;
 
     private EditText firstText, secondText;
@@ -80,5 +82,79 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    @Override
+    protected void onRestart()
+    {
+        super.onRestart();
+        Log.d(TAG, "onRestart() method was invoked");
+    }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        Log.d(TAG, "onStart() method was invoked");
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        Log.d(TAG, "onResume() method was invoked");
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        Log.d(TAG, "onPause() method was invoked");
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+        Log.d(TAG, "onStop() method was invoked");
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy() method was invoked");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState)
+    {
+        Log.d(TAG, "onSaveInstanceState was invoked");
+        super.onSaveInstanceState(savedInstanceState);
+
+        String firstTextWrite;
+        firstTextWrite = firstText.getText().toString();
+
+        String secondTextWrite;
+        secondTextWrite = secondText.getText().toString();
+
+        savedInstanceState.putString("firstTextBox", firstTextWrite);
+        savedInstanceState.putString("secondTextBox", secondTextWrite);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState)
+    {
+        Log.d(TAG, "onRestoreInstanceState() method was invoked");
+        super.onRestoreInstanceState(savedInstanceState);
+
+        String firstTextWrite;
+        String secondTextWrite;
+
+        firstTextWrite = savedInstanceState.getString("firstTextBox");
+        secondTextWrite = savedInstanceState.getString("secondTextBox");
+
+        firstText.setText(firstTextWrite);
+        secondText.setText(secondTextWrite);
     }
 }
