@@ -71,18 +71,47 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity {
                     firstTextWrite = firstText.getText().toString();
                     secondTextWrite = secondText.getText().toString();
 
+                    if(firstTextWrite.isEmpty() && secondTextWrite.isEmpty())
+                    {
+                        Toast.makeText(getApplicationContext(), "Both text box are empty!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(firstTextWrite.isEmpty())
+                    {
+                        Toast.makeText(getApplicationContext(), "First text box is empty!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(secondTextWrite.isEmpty())
+                    {
+                        Toast.makeText(getApplicationContext(), "Second text box is empty!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     resultTextBox.setText(firstTextWrite + " " + secondTextWrite);
                 }
                 else if(firstCheckbox.isChecked() && !(secondCheckbox.isChecked()))
                 {
                     String firstTextWrite;
                     firstTextWrite = firstText.getText().toString();
+
+                    if(firstTextWrite.isEmpty())
+                    {
+                        Toast.makeText(getApplicationContext(), "First text box is empty!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     resultTextBox.setText(firstTextWrite);
                 }
                 else if(!(firstCheckbox.isChecked()) && secondCheckbox.isChecked())
                 {
                     String secondTextWrite;
                     secondTextWrite = secondText.getText().toString();
+
+                    if(secondTextWrite.isEmpty())
+                    {
+                        Toast.makeText(getApplicationContext(), "Second text box is empty!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     resultTextBox.setText(secondTextWrite);
                 }
             }
