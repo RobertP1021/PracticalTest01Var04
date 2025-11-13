@@ -1,5 +1,6 @@
 package ro.pub.cs.systems.eim.practicaltest01var04;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -7,8 +8,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -17,7 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class PracticalTest01Var04MainActivity extends AppCompatActivity {
 
     final public static String TAG                  = "pracTest04";
-    private Button displayButton;
+    private Button displayButton, navigateButton;
 
     private EditText firstText, secondText;
 
@@ -45,10 +48,12 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity {
 
 
         displayButton = findViewById(R.id.displayButton);
+        navigateButton = findViewById(R.id.navigateButton);
 
         ButtonClickListener listener = new ButtonClickListener();
 
         displayButton.setOnClickListener(listener);
+        navigateButton.setOnClickListener(listener);
     }
 
     protected class ButtonClickListener implements View.OnClickListener
@@ -80,6 +85,32 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity {
                     secondTextWrite = secondText.getText().toString();
                     resultTextBox.setText(secondTextWrite);
                 }
+            }
+            else if(id == R.id.navigateButton)
+            {
+                Intent intent = new Intent(PracticalTest01Var04MainActivity.this, PracticalTest01Var04SecondaryActivity.class);
+                intent.putExtra("nameBox", firstText.getText().toString());
+                intent.putExtra("groupBox", secondText.getText().toString());
+
+                startActivityForResult(intent, 2024);
+            }
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 2024)
+        {
+            if(resultCode == RESULT_OK)
+            {
+                Toast.makeText(this, "User Pressed OK Button",Toast.LENGTH_SHORT).show();
+            }
+            else if (resultCode == RESULT_CANCELED)
+            {
+                Toast.makeText(this, "User Pressed Cancel Button",Toast.LENGTH_SHORT).show();
             }
         }
     }
